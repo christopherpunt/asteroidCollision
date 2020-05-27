@@ -1,5 +1,7 @@
 
 def oldcollisionDetector(asteroids):
+    if len(asteroids) == 0 or len(asteroids) == 1:
+        return asteroids
     for i in range(len(asteroids) -1):
         # if a collision happens
         if asteroids[i] > 0 and asteroids[i+1] < 0:
@@ -8,15 +10,15 @@ def oldcollisionDetector(asteroids):
             elif abs(asteroids[i]) < abs(asteroids[i + 1]):
                 asteroids.pop(i)
             else:
-                asteroids.pop(i)
                 asteroids.pop(i + 1)
-
-            
+                asteroids.pop(i)
             oldcollisionDetector(asteroids)
             break
+
     return asteroids
             
 
+#newcollisionDetector using a stack to get rid of the recursion from the oldcollisionDetector
 def newcollisionDetector(asteroids):
     returnArray = []
     for new in asteroids:
@@ -30,9 +32,3 @@ def newcollisionDetector(asteroids):
         else:
             returnArray.append(new)
     return returnArray
-
-
-# oldcollisionDetector(asteroids)
-# print(asteroids)
-
-# print(newcollisionDetector(asteroids))
